@@ -1,47 +1,134 @@
 <!DOCTYPE html>
 
   <!--- 
-  2.4.2 ->
   3.3.1 -> lang="es"
   --->
   <html lang="es">
     <head>
+		<!-- 
+		2.4.2 -> Título de la página
+		-->
 	    <title>TÍTULO DE PÁGINA </title>
    </head>
 
-  <body>
-    <!---   
-    3.3.2 -> el requerido esta definido con *
-    4.1.1 -> id unico
-    --->
-    Fecha de nacimiento <input title='selecciona tu fecha de nacimiento' id='id_unico_fecha' type=data required/>*
-   
-    <!--- 
-      3.3.4 -> Comprobar los formularios antes de enviarlos 
-      4.1.2 -> Uso de java
-    --->
-    <input type=submit onClick=confirmForm(); />
-    <script>
-      function confirmForm(){		
-      var confirm = confirm(“El formulario es correcto?”);
-      }
-    </script>
-  
-    <!---
-    3.1.2 -> Si el lenguaje es distinto se define la palabra en el idioma de la pagina
-    --->
-    <p> El sostuvo su bouquet (Ramo) </p>
+	<!--
+	2.2.1 Si hay un control de tiempo, hay que poner una forma  de atrasar el tiempo
+	-->
+	<script type="text/javascript">
+		function timeControl() {
+			// set timer for 4 min 40 sec, then ask user to confirm.
+			setTimeout('userCheck()', 280000);
+		}
+		function userCheck() {
+			// If user selects "OK" the timer is reset 
+			// else the page will refresh from the server.
+			if (confirm("This page is set to refresh in 20 seconds. Would you like more time?"))
+			{
+				timeControl();
+			} else {
+				setTimeout(pageReload(), 20000);
+			}
+		}
+		function pageReload() {
+			window.location.reload(true);
+		}
+		timeControl();
+	</script>
+	
+	<style>
+		input:focus{ border: 3px solid black; }
+        input:(not_focus {border: 1px solid black;})
+	</style>
+
+
+	<body>
+	<!-- 
+	1.3.1
+	1.3.2
+	La informarción está organizada de forma comprensible
+	(<header>
+        …
+    </header>
+    <main>
+        …
+    </main>
+    <article>
+        …
+    </article>)
+	-->
+	<header>
+		<h1>Página sobre cosa</h1>
+		<!-- 
+		2.4.1 -> Link directo al articulo principal
+		-->
+		<a href="#mainArticle">Link directo al artículo</a>
+		
+		<!-- 
+		1.4.3 -> Contraste de colores
+		-->
+		<div style="background: #fdfa00;">
+			<p style="color:#0081fd">Hola</p>
+		</div>
+
+	</header>
+	
+	<main>
+		<!---   
+		2.1.1 -> ponemos un accesskey y con tab se puede navegar
+		3.3.2 -> el requerido esta definido con *
+		4.1.1 -> id unico
+		--->
+		Fecha de nacimiento <input title="selecciona tu fecha de nacimiento" accesskey="w" id='id_unico_fecha' type=data required/>*
+		
+		<!-- 
+		3.3.4 -> Comprobar los formularios antes de enviarlos 
+		4.1.2 -> Uso de java
+		-->
+		<input type=submit onClick=confirmForm(); />
+		<script>
+		  function confirmForm(){		
+		  var confirm = confirm(“El formulario es correcto?”);
+		  }
+		</script>
+		<!---
+		  3.2.4 -> Los iconos mismos iconos sirven para las mismas cosas o similares
+		--->
+		<button type='button' onClick='window.print();' >
+			<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8jHyADAAAcFxi4t7j8/PxUU1MSDA2Ni4wdGRo2NDUgGhxIRkcJAACsq6v39/cYERNxcHHj4uPp6ekOAweenp5gXl9EQkJnY2UWERLw8PBNS0zAv8BZWFjMy8wPCw1+ensnJiaVkpMNAAanpaaEg4QwLC3W1dWAfn9paWk8OTrsSCKmAAAC/UlEQVR4nO3c63KiMABAYRO0ERFFRbdRvNTL9vL+D7gKardI0RFnSOL5fnTY6eBwJkIkdWk0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAW6pep++AeIJl3y8yTug+wqoWM/DKRXNR9iBUNlCinBnUfYkWv+kqhfq37ECuikELzUUih+Sik0HzuF06kKicndR9iRaPhNaO6DxHPo580Hykxbn1j6MvH8od1J+UMlldmhRKBVqc5JVDKy7aWht37t168uwP139X6VQWHTdXZrefZuof30qo76ocKhd7s8H5MDqOoJ9P9Zk+7VvievsI4FsKfppsr7VSh381eYSiFPp56i9CpQm+WvcJoX7jKNhfSqUIRZNPCNhaByCbBnXKrMJofut4jcVodTiLhVqHQX+PeTqazRdzd9lZh4Fqh8FV4Wvv34vA4+TtVWMjcQn3ljvcabXphtGpXszL8XSqr/8EzCY0u9KuvSYwCowu9fWGr37pXv2V84WEMe2+de7319oWe+YUyuJfs2TGG4d2TYEhhfZ63UIXXqVyhBVea78KofcPSaFv/LLRpDPXHTTt/aGsL4/FNO4+XVhe2rvzpad8xllYX9mVURvYvCm260mSFokRQUGjdGJbPjk9ZaN27NPuX7+X5bo2h7r7kdbVLY6jWBfuslUNjKIsWN0bSocJ4W7DPNnaoUESzSd4scupKI7wo8qL9FfT8M/J+u5ZaeaX5nTtjSKH5hbNNequg0tXE843Dj/Mw5//z8LzDoVClm5uZYYXtQWbaaCSfx+3BZ/NUGE8GeZP4VNj83iFpNKbH7bZZhb9LCzeF8+HmWGi5Gz7TWC4tXBZ+Ll06VCjiziyvcz4PLXfD/aHlbpgPLUehM4WXX0LRbhWqwcXXSrL/A+1KYdgs+E0zdKjQ/c80aje9eF7EdKccKhSq8yev49R5KETBV0vcupY+wXxIocWeoFCWPZ7Gc6Hwq/QZQ1/2F5Y/JsqJB0UBAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPP5B+99ZXr6eAkmAAAAAElFTkSuQmCC' width='10px' height='10px' />
+		</button>
+		
+		<button type='button' onClick='window.print();' >
+			<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8jHyADAAAcFxi4t7j8/PxUU1MSDA2Ni4wdGRo2NDUgGhxIRkcJAACsq6v39/cYERNxcHHj4uPp6ekOAweenp5gXl9EQkJnY2UWERLw8PBNS0zAv8BZWFjMy8wPCw1+ensnJiaVkpMNAAanpaaEg4QwLC3W1dWAfn9paWk8OTrsSCKmAAAC/UlEQVR4nO3c63KiMABAYRO0ERFFRbdRvNTL9vL+D7gKardI0RFnSOL5fnTY6eBwJkIkdWk0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAW6pep++AeIJl3y8yTug+wqoWM/DKRXNR9iBUNlCinBnUfYkWv+kqhfq37ECuikELzUUih+Sik0HzuF06kKicndR9iRaPhNaO6DxHPo580Hykxbn1j6MvH8od1J+UMlldmhRKBVqc5JVDKy7aWht37t168uwP139X6VQWHTdXZrefZuof30qo76ocKhd7s8H5MDqOoJ9P9Zk+7VvievsI4FsKfppsr7VSh381eYSiFPp56i9CpQm+WvcJoX7jKNhfSqUIRZNPCNhaByCbBnXKrMJofut4jcVodTiLhVqHQX+PeTqazRdzd9lZh4Fqh8FV4Wvv34vA4+TtVWMjcQn3ljvcabXphtGpXszL8XSqr/8EzCY0u9KuvSYwCowu9fWGr37pXv2V84WEMe2+de7319oWe+YUyuJfs2TGG4d2TYEhhfZ63UIXXqVyhBVea78KofcPSaFv/LLRpDPXHTTt/aGsL4/FNO4+XVhe2rvzpad8xllYX9mVURvYvCm260mSFokRQUGjdGJbPjk9ZaN27NPuX7+X5bo2h7r7kdbVLY6jWBfuslUNjKIsWN0bSocJ4W7DPNnaoUESzSd4scupKI7wo8qL9FfT8M/J+u5ZaeaX5nTtjSKH5hbNNequg0tXE843Dj/Mw5//z8LzDoVClm5uZYYXtQWbaaCSfx+3BZ/NUGE8GeZP4VNj83iFpNKbH7bZZhb9LCzeF8+HmWGi5Gz7TWC4tXBZ+Ll06VCjiziyvcz4PLXfD/aHlbpgPLUehM4WXX0LRbhWqwcXXSrL/A+1KYdgs+E0zdKjQ/c80aje9eF7EdKccKhSq8yev49R5KETBV0vcupY+wXxIocWeoFCWPZ7Gc6Hwq/QZQ1/2F5Y/JsqJB0UBAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPP5B+99ZXr6eAkmAAAAAElFTkSuQmCC' width='10px' height='10px' />
+		</button>		
+		
+	</main>
+	
+	<!--
+		2.4.1
+	-->
+	<article id="mainArticle">
+		<!---   
+		1.1.1 -> foto con texto alternativo
+		--->
+		<br/><br/>
+		<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fcalendar-picture-id908108822%3Fk%3D6%26m%3D908108822%26s%3D170667a%26w%3D0%26h%3DEuYmgR8FPqhjZ-5Fg02Ax_eszez-f_iqwWabGGGHagY%3D&f=1&nofb=1" alt="foto de un calendario">
+		
+		<!---
+		3.1.2 -> Si el lenguaje es distinto se define la palabra en el idioma de la pagina
+		--->
+		<p> El sostuvo su bouquet (Ramo) </p>
+		
+		<!--
+			1.4.2 -> control de video
+			2.2.2 -> control de video
+		-->
+		<video width="320" height="240" controls>   
+			<source src="movie.mp4" type="video/mp4">   
+			Your browser does not support the video tag. 
+		</video>
+
+	</article>
     
-    <!---
-      3.2.4 -> Los iconos mismos iconos sirven para las mismas cosas o similares
-    --->
-    <button type='button' onClick='window.print();' >
-        <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8jHyADAAAcFxi4t7j8/PxUU1MSDA2Ni4wdGRo2NDUgGhxIRkcJAACsq6v39/cYERNxcHHj4uPp6ekOAweenp5gXl9EQkJnY2UWERLw8PBNS0zAv8BZWFjMy8wPCw1+ensnJiaVkpMNAAanpaaEg4QwLC3W1dWAfn9paWk8OTrsSCKmAAAC/UlEQVR4nO3c63KiMABAYRO0ERFFRbdRvNTL9vL+D7gKardI0RFnSOL5fnTY6eBwJkIkdWk0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAW6pep++AeIJl3y8yTug+wqoWM/DKRXNR9iBUNlCinBnUfYkWv+kqhfq37ECuikELzUUih+Sik0HzuF06kKicndR9iRaPhNaO6DxHPo580Hykxbn1j6MvH8od1J+UMlldmhRKBVqc5JVDKy7aWht37t168uwP139X6VQWHTdXZrefZuof30qo76ocKhd7s8H5MDqOoJ9P9Zk+7VvievsI4FsKfppsr7VSh381eYSiFPp56i9CpQm+WvcJoX7jKNhfSqUIRZNPCNhaByCbBnXKrMJofut4jcVodTiLhVqHQX+PeTqazRdzd9lZh4Fqh8FV4Wvv34vA4+TtVWMjcQn3ljvcabXphtGpXszL8XSqr/8EzCY0u9KuvSYwCowu9fWGr37pXv2V84WEMe2+de7319oWe+YUyuJfs2TGG4d2TYEhhfZ63UIXXqVyhBVea78KofcPSaFv/LLRpDPXHTTt/aGsL4/FNO4+XVhe2rvzpad8xllYX9mVURvYvCm260mSFokRQUGjdGJbPjk9ZaN27NPuX7+X5bo2h7r7kdbVLY6jWBfuslUNjKIsWN0bSocJ4W7DPNnaoUESzSd4scupKI7wo8qL9FfT8M/J+u5ZaeaX5nTtjSKH5hbNNequg0tXE843Dj/Mw5//z8LzDoVClm5uZYYXtQWbaaCSfx+3BZ/NUGE8GeZP4VNj83iFpNKbH7bZZhb9LCzeF8+HmWGi5Gz7TWC4tXBZ+Ll06VCjiziyvcz4PLXfD/aHlbpgPLUehM4WXX0LRbhWqwcXXSrL/A+1KYdgs+E0zdKjQ/c80aje9eF7EdKccKhSq8yev49R5KETBV0vcupY+wXxIocWeoFCWPZ7Gc6Hwq/QZQ1/2F5Y/JsqJB0UBAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPP5B+99ZXr6eAkmAAAAAElFTkSuQmCC' width='10px' height='10px' />
-    </button>
-    
-    <button type='button' onClick='window.print();' >
-        <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8jHyADAAAcFxi4t7j8/PxUU1MSDA2Ni4wdGRo2NDUgGhxIRkcJAACsq6v39/cYERNxcHHj4uPp6ekOAweenp5gXl9EQkJnY2UWERLw8PBNS0zAv8BZWFjMy8wPCw1+ensnJiaVkpMNAAanpaaEg4QwLC3W1dWAfn9paWk8OTrsSCKmAAAC/UlEQVR4nO3c63KiMABAYRO0ERFFRbdRvNTL9vL+D7gKardI0RFnSOL5fnTY6eBwJkIkdWk0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAW6pep++AeIJl3y8yTug+wqoWM/DKRXNR9iBUNlCinBnUfYkWv+kqhfq37ECuikELzUUih+Sik0HzuF06kKicndR9iRaPhNaO6DxHPo580Hykxbn1j6MvH8od1J+UMlldmhRKBVqc5JVDKy7aWht37t168uwP139X6VQWHTdXZrefZuof30qo76ocKhd7s8H5MDqOoJ9P9Zk+7VvievsI4FsKfppsr7VSh381eYSiFPp56i9CpQm+WvcJoX7jKNhfSqUIRZNPCNhaByCbBnXKrMJofut4jcVodTiLhVqHQX+PeTqazRdzd9lZh4Fqh8FV4Wvv34vA4+TtVWMjcQn3ljvcabXphtGpXszL8XSqr/8EzCY0u9KuvSYwCowu9fWGr37pXv2V84WEMe2+de7319oWe+YUyuJfs2TGG4d2TYEhhfZ63UIXXqVyhBVea78KofcPSaFv/LLRpDPXHTTt/aGsL4/FNO4+XVhe2rvzpad8xllYX9mVURvYvCm260mSFokRQUGjdGJbPjk9ZaN27NPuX7+X5bo2h7r7kdbVLY6jWBfuslUNjKIsWN0bSocJ4W7DPNnaoUESzSd4scupKI7wo8qL9FfT8M/J+u5ZaeaX5nTtjSKH5hbNNequg0tXE843Dj/Mw5//z8LzDoVClm5uZYYXtQWbaaCSfx+3BZ/NUGE8GeZP4VNj83iFpNKbH7bZZhb9LCzeF8+HmWGi5Gz7TWC4tXBZ+Ll06VCjiziyvcz4PLXfD/aHlbpgPLUehM4WXX0LRbhWqwcXXSrL/A+1KYdgs+E0zdKjQ/c80aje9eF7EdKccKhSq8yev49R5KETBV0vcupY+wXxIocWeoFCWPZ7Gc6Hwq/QZQ1/2F5Y/JsqJB0UBAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPP5B+99ZXr6eAkmAAAAAElFTkSuQmCC' width='10px' height='10px' />
-    </button>
   </body>
     
 </html> 
